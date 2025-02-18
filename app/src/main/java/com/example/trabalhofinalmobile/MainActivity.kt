@@ -55,6 +55,10 @@ class MainActivity : ComponentActivity() {
                                     onDelete = {
                                         activities.remove(activity)
                                         currentScreen = "list"
+                                    },
+                                    onComplete = {
+                                        activity.isCompleted = true
+                                        currentScreen = "list"
                                     }
                                 )
                             }

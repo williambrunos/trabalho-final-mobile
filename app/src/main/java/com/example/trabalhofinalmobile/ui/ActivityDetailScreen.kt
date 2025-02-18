@@ -14,7 +14,8 @@ fun ActivityDetailScreen(
     modifier: Modifier = Modifier,
     onBack: () -> Unit,
     onEdit: (Activity) -> Unit,
-    onDelete: (Activity) -> Unit
+    onDelete: (Activity) -> Unit,
+    onComplete: (Activity) -> Unit
 ) {
     Column(modifier = modifier.padding(16.dp)) {
         Text(text = activity.name, modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp))
@@ -32,6 +33,10 @@ fun ActivityDetailScreen(
         Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = { onDelete(activity) }) {
             Text("Deletar Task")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = { onComplete(activity) }) {
+            Text("Marcar como Concluída")
         }
     }
 }

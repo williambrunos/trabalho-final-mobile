@@ -41,7 +41,12 @@ fun ActivityListItem(
         shape = RoundedCornerShape(8.dp)
     ) {
         Box(modifier = Modifier.padding(16.dp)) {
-            Text(text = activity.name)
+            Column {
+                Text(text = activity.name)
+                if (activity.isCompleted) {
+                    Text(text = "Concluída", color = Color.Green)
+                }
+            }
         }
     }
 }

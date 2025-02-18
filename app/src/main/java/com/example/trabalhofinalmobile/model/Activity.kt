@@ -5,7 +5,8 @@ data class Activity(
     val name: String,
     val responsible: String,
     val date: String,
-    val description: String
+    val description: String,
+    var isCompleted: Boolean = false
 ) {
     fun validate(): List<String> {
         val errors = mutableListOf<String>()
