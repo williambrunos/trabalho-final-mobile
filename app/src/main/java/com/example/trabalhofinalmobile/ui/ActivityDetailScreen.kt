@@ -12,7 +12,9 @@ import com.example.trabalhofinalmobile.model.Activity
 fun ActivityDetailScreen(
     activity: Activity,
     modifier: Modifier = Modifier,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onEdit: (Activity) -> Unit,
+    onDelete: (Activity) -> Unit
 ) {
     Column(modifier = modifier.padding(16.dp)) {
         Text(text = activity.name, modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp))
@@ -21,7 +23,15 @@ fun ActivityDetailScreen(
         Text(text = activity.description, modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp))
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = onBack) {
-            Text("Back to Home")
+            Text("Tela inicial")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = { onEdit(activity) }) {
+            Text("Editar Task")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = { onDelete(activity) }) {
+            Text("Deletar Task")
         }
     }
 }

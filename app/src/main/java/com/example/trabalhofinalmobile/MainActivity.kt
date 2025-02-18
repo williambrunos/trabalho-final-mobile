@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                                     onClick = { currentScreen = "add" },
                                     modifier = Modifier.padding(16.dp)
                                 ) {
-                                    Text("Add Activity")
+                                    Text("Adicionar atividade")
                                 }
                             }
                             "add" -> AddActivityScreen(Modifier.padding(innerPadding)) { activity: Activity ->
@@ -47,7 +47,23 @@ class MainActivity : ComponentActivity() {
                                 currentScreen = "list"
                             }
                             "detail" -> selectedActivity?.let { activity: Activity ->
-                                ActivityDetailScreen(activity, Modifier.padding(innerPadding)) {
+                                ActivityDetailScreen(
+                                    activity,
+                                    Modifier.padding(innerPadding),
+                                    onBack = { currentScreen = "list" },
+                                    onEdit = { currentScreen = "edit" },
+                                    onDelete = {
+                                        activities.remove(activity)
+                                        currentScreen = "list"
+                                    }
+                                )
+                            }
+                            "edit" -> selectedActivity?.let { activity: Activity ->
+                                EditActivityScreen(activity, Modifier.padding(innerPadding)) { updatedActivity: Activity ->
+                                    val index = activities.indexOfFirst { it.id == updatedActivity.id }
+                                    if (index != -1) {
+                                        activities[index] = updatedActivity
+                                    }
                                     currentScreen = "list"
                                 }
                             }

@@ -9,21 +9,28 @@ data class Activity(
 ) {
     fun validate(): List<String> {
         val errors = mutableListOf<String>()
-        if (name.length > 500) {
+        if (name.isBlank()) {
+            errors.add("Name is required")
+        } else if (name.length > 500) {
             errors.add("Name cannot be longer than 500 characters")
         }
-        if (responsible.length > 100) {
+        if (responsible.isBlank()) {
+            errors.add("Responsible is required")
+        } else if (responsible.length > 100) {
             errors.add("Responsible cannot be longer than 100 characters")
         }
-        if (!isValidDate(date)) {
+        if (date.isBlank()) {
+            errors.add("Date is required")
+        } else if (!isValidDate(date)) {
             errors.add("Date must be a valid date")
+        }
+        if (description.isBlank()) {
+            errors.add("Description is required")
         }
         return errors
     }
 
     private fun isValidDate(date: String): Boolean {
-        // Implement your date validation logic here
-        // For simplicity, let's assume the date format is "yyyy-MM-dd"
         return try {
             val dateFormat = java.text.SimpleDateFormat("yyyy-MM-dd")
             dateFormat.isLenient = false
