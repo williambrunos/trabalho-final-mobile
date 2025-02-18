@@ -47,7 +47,9 @@ class MainActivity : ComponentActivity() {
                                 currentScreen = "list"
                             }
                             "detail" -> selectedActivity?.let { activity: Activity ->
-                                ActivityDetailScreen(activity, Modifier.padding(innerPadding))
+                                ActivityDetailScreen(activity, Modifier.padding(innerPadding)) {
+                                    currentScreen = "list"
+                                }
                             }
                         }
                     }
